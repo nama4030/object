@@ -1,0 +1,48 @@
+#include <Adafruit_NeoPixel.h>
+
+#define PIXEL_PIN    6    // Digital IO pin connected to the NeoPixels.
+#define PIXEL_COUNT 5
+
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  // put your setup code here, to run once:
+  strip.begin();
+strip.setPixelColor(0, 25, 25, 25);
+strip.setPixelColor(1, 25, 25, 25);
+strip.setPixelColor(2, 25, 25, 25);
+strip.setPixelColor(3, 25, 25, 25);
+strip.setPixelColor(4, 25, 25, 25);
+strip.show();
+
+pinMode(5, INPUT);
+pinMode(4, INPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  int button1 = digitalRead(5);
+  int button2 = digitalRead(4);
+
+  
+if (button1 == HIGH)
+ {
+  for(int i =0; i< PIXEL_COUNT; i++)
+  {
+    strip.setPixelColor(i, 25, 0, 0);
+    strip.show();
+    delay(250);
+  }
+ }
+ 
+if (button2 == HIGH)
+   {
+      for(int i =0; i< PIXEL_COUNT; i++)
+      {
+      strip.setPixelColor(i, 0, 25, 0);
+      strip.show();
+      delay(250);
+      }
+}
+}
